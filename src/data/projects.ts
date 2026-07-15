@@ -24,22 +24,22 @@ import type { Project } from "@/lib/types";
 export const projects: Project[] = [
   {
     slug: "patinated-steel-range-hood",
-    title: "Patinated Steel Range Hood",
+    title: "Stained Brass Range Hood",
     category: "Kitchen & Interior Finishes",
     summary:
-      "A large hand-torched steel range hood with a mottled black-and-gold patina, set against a marble slab backsplash.",
+      "A large range hood in hand-stained brass with a mottled, one-of-a-kind patina, set against a marble slab backsplash.",
     description:
-      "This kitchen wanted a hood that acted as the visual centerpiece of the room rather than disappearing into the cabinetry. We built it full-width over the range and finished the steel with a heat-patinated surface — no two square inches read quite the same, which gives the piece a lot of depth against the book-matched marble slab behind it.",
+      "This kitchen wanted a hood that acted as the visual centerpiece of the room rather than disappearing into the cabinetry. We built it full-width over the range and finished it in stained brass — no two square inches read quite the same, which gives the piece a lot of depth against the book-matched marble slab behind it.",
     challenge:
       "Build a hood large enough to properly vent a professional range while giving it a finish with real presence next to a dramatic stone backsplash.",
     result:
-      "A seamless steel hood with a one-of-a-kind torched finish, sized and vented to match the range below it.",
-    materials: ["Mild steel", "Heat-patinated finish"],
+      "A seamless brass hood with a one-of-a-kind stained finish, sized and vented to match the range below it.",
+    materials: ["Brass", "Hand-stained finish"],
     coverImage: "/projects/patinated-steel-range-hood/cover.jpg",
     images: [
       {
         src: "/projects/patinated-steel-range-hood/cover.jpg",
-        alt: "Large custom steel range hood with a mottled black-and-gold patinated finish above a professional range, set against a marble slab backsplash.",
+        alt: "Large custom brass range hood with a mottled, hand-stained patina above a professional range, set against a marble slab backsplash.",
         width: 1350,
         height: 1800,
       },
@@ -50,14 +50,14 @@ export const projects: Project[] = [
     title: "Arched Wine Cellar Door",
     category: "Architectural Metalwork",
     summary:
-      "A hand-textured steel-and-glass double door set into an arched opening leading to a brick barrel-vault wine cellar.",
+      "A hand-forged steel-and-glass double door with Damascus steel accents, set into an arched opening leading to a brick barrel-vault wine cellar.",
     description:
-      "The cellar behind this door is fully brick-vaulted, so the entrance needed to match that level of craft. We built an arched steel frame with a hammered, textured surface and glazed double doors, including a matching side panel, so the whole opening reads as one continuous piece of ironwork.",
+      "The cellar behind this door is fully brick-vaulted, so the entrance needed to match that level of craft. We hand-forged an arched steel frame and glazed double doors, including a matching side panel, and brought in Damascus steel for the accents — so the whole opening reads as one continuous piece of ironwork.",
     challenge:
       "Fabricate an arched frame and a pair of doors that fit a curved masonry opening precisely, without the frame looking applied or separate from the brickwork.",
     result:
-      "A tight-fitting arched steel-and-glass entry with a hand-textured surface and a substantial matching pull handle.",
-    materials: ["Textured mild steel", "Glass panels", "Wood-and-steel door pull"],
+      "A tight-fitting arched steel-and-glass entry, hand-forged with Damascus steel accents and a substantial matching pull handle.",
+    materials: ["Hand-forged steel", "Glass panels", "Damascus steel accents"],
     coverImage: "/projects/wine-cellar-door/cover.jpg",
     images: [
       {
@@ -68,13 +68,13 @@ export const projects: Project[] = [
       },
       {
         src: "/projects/wine-cellar-door/01.jpg",
-        alt: "Detail of the wine cellar door's textured steel surface and glazing.",
+        alt: "Detail of the wine cellar door's hand-forged steel surface and glazing.",
         width: 1350,
         height: 1800,
       },
       {
         src: "/projects/wine-cellar-door/02.jpg",
-        alt: "Close-up of the door pull, a wood-and-steel handle mounted to the hammered steel door frame.",
+        alt: "Close-up of the door pull with Damascus steel accents, mounted to the hand-forged steel door frame.",
         width: 1350,
         height: 1800,
       },

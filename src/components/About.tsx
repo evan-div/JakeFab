@@ -39,8 +39,8 @@ export function About() {
               spans fine interior details and rugged outdoor pieces, but the
               approach is the same either way: understand how something will
               be used, design it to fit, and build it to last. Outside the
-              shop, he's usually working on his truck or hanging out with his
-              dog, Uzi.
+              shop, he's usually working on his truck, riding his stunt bike,
+              or hanging out with his dog, Uzi.
             </p>
           </Reveal>
 
