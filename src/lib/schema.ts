@@ -24,9 +24,9 @@ export function localBusinessJsonLd() {
       addressRegion: site.addressRegion,
       addressCountry: "US",
     },
-    // ▸ Add these once verified:
-    // telephone: site.phone,
-    // email: site.email,
+    telephone: site.phone,
+    email: site.email,
+    // ▸ Add once verified — precise coordinates for the workshop/service area:
     // geo: { "@type": "GeoCoordinates", latitude: 48.22, longitude: -122.68 },
     knowsAbout: [
       "Custom metal fabrication",

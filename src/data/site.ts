@@ -13,10 +13,10 @@ export const site = {
   state: "Washington",
   region: "Whidbey Island & the greater Seattle area",
 
-  // ▸ Contact — supply real details.
-  email: "[PLACEHOLDER — hello@jakewallmetalworks.com]",
-  phone: "[PLACEHOLDER — (360) 000-0000]",
-  phoneHref: "tel:+13600000000",
+  // ▸ Contact
+  email: "wall.d.jake@gmail.com",
+  phone: "(704) 315-7270",
+  phoneHref: "tel:+17043157270",
 
   // ▸ Physical / mailing reference (a full street address is optional for a
   //   workshop; the schema markup below can use whatever you provide).

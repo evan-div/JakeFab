@@ -37,15 +37,12 @@ export function About() {
           <Reveal delay={80}>
             <p className="mt-6 text-base leading-relaxed text-concrete-100/80">
               Based in {site.city}, Jake builds custom metalwork for clients
-              across {site.region}. The work spans fine interior details and
-              rugged outdoor pieces, but the approach is the same either way:
-              understand how something will be used, design it to fit, and build
-              it to last.
-              {" "}
-              <span className="text-concrete-100/50">
-                [PLACEHOLDER — add Jake's background, how he got into the trade,
-                and what he most enjoys building.]
-              </span>
+              across {site.region}. With over 12 years in the trade, the work
+              spans fine interior details and rugged outdoor pieces, but the
+              approach is the same either way: understand how something will
+              be used, design it to fit, and build it to last. Outside the
+              shop, he's usually working on his truck or hanging out with his
+              dog, Uzi.
             </p>
           </Reveal>
 
@@ -54,7 +51,7 @@ export function About() {
               &ldquo;Bring me the idea that doesn't have an easy answer. That's
               the work I like best.&rdquo;
               <cite className="mt-2 block font-sans text-xs not-italic tracking-wide text-concrete-100/50">
-                [PLACEHOLDER — confirm or replace this quote]
+                — Jake Wall
               </cite>
             </blockquote>
           </Reveal>
@@ -66,7 +63,7 @@ export function About() {
                   Experience
                 </dt>
                 <dd className="mt-1 font-display text-2xl font-bold">
-                  [XX]
+                  12+
                   <span className="text-sm font-normal text-concrete-100/60">
                     {" "}
                     yrs
