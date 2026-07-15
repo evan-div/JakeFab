@@ -12,11 +12,9 @@ export function About() {
         {/* Portrait / workshop image */}
         <div className="lg:col-span-5">
           <Reveal className="relative aspect-[4/5] w-full overflow-hidden bg-steel-950">
-            {/* ▸ Standing in for a portrait until we have one — replace with a
-                real photo of Jake or the shop. */}
             <SmartImage
-              src="/projects/wine-cellar-door/cover.jpg"
-              alt="PLACEHOLDER — portrait or workshop photo of Jake Wall. Currently showing a detail shot of finished work instead."
+              src="/about/jake-portrait.jpg"
+              alt="Jake Wall in his shop, getting a face full of enthusiasm from his dog, Uzi."
               fill
               loading="lazy"
               sizes="(max-width: 1024px) 100vw, 40vw"
