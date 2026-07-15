@@ -63,10 +63,15 @@ const config: Config = {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        shimmer: {
+          "0%": { transform: "translateX(-120%) skewX(-12deg)" },
+          "100%": { transform: "translateX(320%) skewX(-12deg)" },
+        },
       },
       animation: {
         "reveal-up": "reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards",
         "fade-in": "fade-in 0.4s ease forwards",
+        shimmer: "shimmer 3s ease-in-out infinite",
       },
     },
   },

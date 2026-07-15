@@ -5,6 +5,7 @@ import { Capabilities } from "@/components/Capabilities";
 import { ProjectGallery } from "@/components/ProjectGallery";
 import { Process } from "@/components/Process";
 import { About } from "@/components/About";
+import { Equipment } from "@/components/Equipment";
 // import { Trust } from "@/components/Trust"; // hidden for now — re-enable once there's real testimonial/partner content
 import { QuoteForm } from "@/components/QuoteForm";
 import { Footer } from "@/components/Footer";
@@ -26,6 +27,7 @@ export default function Home() {
         <ProjectGallery />
         <Process />
         <About />
+        <Equipment />
         {/* <Trust /> */}
         <QuoteForm />
       </main>
