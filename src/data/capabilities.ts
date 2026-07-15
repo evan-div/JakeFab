@@ -7,6 +7,11 @@ export const capabilities: Capability[] = [
       "Interior stairs, balconies, decks, and entryways — from clean minimal steel to detailed ornamental work, built to code and to the space.",
   },
   {
+    title: "Custom Door Hardware",
+    description:
+      "Pulls, hinges, thumb-latches, and sliding door hardware forged and machined to match a door instead of bolted on as an afterthought.",
+  },
+  {
     title: "Planter Boxes",
     description:
       "Corten, powder-coated steel, and mixed-material planters sized for patios, courtyards, and commercial entrances.",

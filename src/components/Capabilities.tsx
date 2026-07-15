@@ -23,11 +23,15 @@ export function Capabilities() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-concrete-50/10 bg-concrete-50/10 sm:grid-cols-2 lg:grid-cols-4">
-          {capabilities.map((cap, i) => (
+          {capabilities.map((cap, i) => {
+            const isLast = i === capabilities.length - 1;
+            return (
             <Reveal
               key={cap.title}
               delay={(i % 4) * 60}
-              className="group relative bg-steel-950 p-7 transition-colors duration-300 hover:bg-steel-900"
+              className={`group relative bg-steel-950 p-7 transition-colors duration-300 hover:bg-steel-900 ${
+                isLast && capabilities.length % 2 === 1 ? "sm:col-span-2" : ""
+              } ${isLast && capabilities.length % 4 === 1 ? "lg:col-span-4" : ""}`}
             >
               <span className="font-mono text-xs text-copper-400">
                 {String(i + 1).padStart(2, "0")}
@@ -43,7 +47,8 @@ export function Capabilities() {
                 aria-hidden="true"
               />
             </Reveal>
-          ))}
+            );
+          })}
         </div>
 
         <Reveal className="mt-10">
