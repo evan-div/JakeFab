@@ -1,0 +1,48 @@
+/**
+ * Central business information.
+ *
+ * ▸ REPLACE every value marked with `[PLACEHOLDER …]` before launch.
+ *   These are drafts / stand-ins — nothing here is verified fact.
+ */
+export const site = {
+  name: "Jake Wall Metalworks",
+  // A short tagline for the logo lockup / meta.
+  shortName: "Jake Wall",
+  role: "Custom Metalsmith & Fabricator",
+  city: "Coupeville",
+  state: "Washington",
+  region: "Whidbey Island & the greater Seattle area",
+
+  // ▸ Contact — supply real details.
+  email: "[PLACEHOLDER — hello@jakewallmetalworks.com]",
+  phone: "[PLACEHOLDER — (360) 000-0000]",
+  phoneHref: "tel:+13600000000",
+
+  // ▸ Physical / mailing reference (a full street address is optional for a
+  //   workshop; the schema markup below can use whatever you provide).
+  addressLocality: "Coupeville",
+  addressRegion: "WA",
+  postalCode: "[PLACEHOLDER — 98239]",
+
+  // ▸ Social — leave "" to hide a link in the footer.
+  social: {
+    instagram: "", // e.g. "https://instagram.com/jakewallmetalworks"
+    facebook: "",
+    houzz: "",
+  },
+
+  // Canonical site URL (used for metadata / Open Graph / schema).
+  url: "https://www.jakewallmetalworks.com", // [PLACEHOLDER — final domain]
+
+  // Areas served — used in copy and LocalBusiness schema.
+  serviceAreas: [
+    "Coupeville",
+    "Whidbey Island",
+    "Oak Harbor",
+    "Langley",
+    "Anacortes",
+    "Greater Seattle",
+  ],
+};
+
+export type Site = typeof site;

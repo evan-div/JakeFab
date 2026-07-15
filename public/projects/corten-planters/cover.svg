@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#7a4a30"/>
+      <stop offset="1" stop-color="#3d2418"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1100" fill="url(#g)"/>
+  <rect width="1600" height="1100" fill="url(#g)" filter="url(#grain)" opacity="0.5"/>
+  <g stroke="#c98a5f" stroke-opacity="0.28" stroke-width="2">
+    <line x1="0" y1="550" x2="1600" y2="430"/>
+    <line x1="0" y1="682" x2="1600" y2="562"/>
+    <line x1="800" y1="0" x2="710" y2="1100"/>
+  </g>
+  <g font-family="ui-monospace, monospace" fill="#f4f1ec" text-anchor="middle">
+    <text x="800" y="540" font-size="46" letter-spacing="6" opacity="0.92">PLACEHOLDER</text>
+    <text x="800" y="594" font-size="28" letter-spacing="2" opacity="0.7">Corten planters · Weathering steel</text>
+    <text x="800" y="642" font-size="20" letter-spacing="4" opacity="0.45">1600×1100</text>
+  </g>
+</svg>

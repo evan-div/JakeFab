@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  body {
+    @apply bg-concrete-50 text-steel-900 font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Visible, consistent focus for keyboard users. */
+  :focus-visible {
+    outline: 2px solid theme("colors.copper.500");
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: theme("colors.copper.500");
+    color: theme("colors.concrete.50");
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Small technical / blueprint-style label. */
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-label text-copper-500;
+  }
+
+  .eyebrow-muted {
+    @apply font-mono text-xs uppercase tracking-label text-steel-400;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-none px-6 py-3.5
+      text-sm font-semibold tracking-wide transition-all duration-300 ease-premium
+      focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-copper-500 text-concrete-50 hover:bg-copper-600
+      hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-dark {
+    @apply btn bg-steel-900 text-concrete-50 hover:bg-steel-800
+      hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply btn border border-steel-300 bg-transparent text-steel-900
+      hover:border-steel-900 hover:bg-steel-900 hover:text-concrete-50;
+  }
+
+  .btn-ghost-light {
+    @apply btn border border-concrete-50/40 bg-transparent text-concrete-50
+      hover:border-concrete-50 hover:bg-concrete-50 hover:text-steel-900;
+  }
+
+  /* Subtle top hairline used to separate sections. */
+  .section-rule {
+    @apply border-t border-steel-900/10;
+  }
+}
+
+/* Fine grain overlay usable on dark hero/section blocks. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
