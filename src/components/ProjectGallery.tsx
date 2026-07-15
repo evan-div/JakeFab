@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { SmartImage } from "./SmartImage";
 import type { Project } from "@/lib/types";
 import { projects } from "@/data/projects";
+import { getProjectMedia, mediaCountLabel } from "@/lib/projectMedia";
 import { Reveal } from "./Reveal";
 import { ProjectModal } from "./ProjectModal";
 
@@ -65,6 +66,8 @@ function ProjectRow({
   flip: boolean;
   onOpen: (p: Project, el: HTMLButtonElement) => void;
 }) {
+  const media = getProjectMedia(project);
+
   return (
     <Reveal className="group grid grid-cols-1 items-center gap-6 md:grid-cols-12 md:gap-10">
       {/* Image */}
@@ -91,9 +94,9 @@ function ProjectRow({
             className="pointer-events-none absolute inset-0 bg-steel-950/0 transition-colors duration-500 group-hover:bg-steel-950/10"
             aria-hidden="true"
           />
-          {project.images.length > 1 && (
+          {media.length > 1 && (
             <span className="pointer-events-none absolute bottom-3 right-3 bg-steel-950/70 px-2.5 py-1 font-mono text-[11px] text-concrete-50">
-              {project.images.length} photos
+              {mediaCountLabel(media)}
             </span>
           )}
         </button>

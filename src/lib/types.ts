@@ -5,6 +5,16 @@ export type ProjectImage = {
   height?: number;
 };
 
+export type ProjectVideo = {
+  src: string;
+  /** Description used for the accessible label — there's no on-screen caption track. */
+  alt: string;
+  /** Still frame shown before playback. Falls back to the browser's default (first frame) if omitted. */
+  poster?: string;
+  width?: number;
+  height?: number;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -22,6 +32,9 @@ export type Project = {
   result?: string;
   coverImage: string;
   images: ProjectImage[];
+  /** Optional clips (install walkthroughs, process footage, etc.) shown in the
+   *  same gallery carousel after the photos. */
+  videos?: ProjectVideo[];
   /** Marks demonstration content so it is never presented as a real job. */
   isPlaceholder?: boolean;
 };

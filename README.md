@@ -103,14 +103,42 @@ Cards alternate left/right automatically.
   shift.
 - Write **specific `alt` text** describing what's in the photo (material,
   object, setting) — not "image" or the project title.
-- The current `.svg` files are generated placeholders. Real raster photos are
-  optimized normally; the `SmartImage` wrapper (`src/components/SmartImage.tsx`)
-  only bypasses the optimizer for `.svg`, so you don't need to change anything.
+- Large source photos are resized/recompressed before committing (see the
+  optimization note at the bottom of this file) — no need to pre-shrink
+  images yourself, just don't skip that step for new large uploads.
 
-The **hero** and **about** sections point at placeholder images too —
-update those `src` paths in `src/components/Hero.tsx` and
-`src/components/About.tsx` to your strongest hero photo and a portrait/workshop
-shot.
+**Adding videos to a project**
+
+Drop the video file in the same project folder as its photos, then add a
+`videos` array alongside `images`:
+
+```ts
+{
+  // ...same fields as above...
+  images: [ /* ... */ ],
+  videos: [
+    {
+      src: "/projects/your-new-project/install-walkthrough.mp4",
+      alt: "Describe what's happening in the clip.",
+      poster: "/projects/your-new-project/cover.jpg", // optional still frame
+    },
+  ],
+}
+```
+
+Videos show up after the photos in the same lightbox carousel — same arrows,
+same dot navigation, same keyboard support. They play with native browser
+controls (nothing autoplays). A few notes:
+
+- Use **MP4 (H.264)** for the broadest browser support.
+- `poster` is optional but recommended — without it, the browser just shows
+  a blank frame until the video's metadata loads. Reusing the project's
+  `cover.jpg` works well.
+- Keep clips reasonably short and compressed for web (a phone video straight
+  off a camera roll can be 100MB+; something in the 5–20MB range loads much
+  better). Compress with `ffmpeg` or a tool like HandBrake before adding.
+- The gallery card badge automatically updates to reflect the mix, e.g.
+  "3 photos, 1 video".
 
 ---
 
@@ -213,7 +241,7 @@ src/
     ValueProp.tsx     # intro / four pillars
     Capabilities.tsx  # 8 capability cards (data-driven)
     ProjectGallery.tsx# alternating editorial rows (data-driven)
-    ProjectModal.tsx  # accessible lightbox: focus trap, arrows, Esc
+    ProjectModal.tsx  # accessible lightbox: focus trap, arrows, Esc, photos + videos
     Process.tsx       # 5-step process
     About.tsx         # craftsman bio + stats
     Trust.tsx         # service area, testimonials, credentials (placeholders)
@@ -222,7 +250,8 @@ src/
     Reveal.tsx        # scroll-reveal wrapper (respects reduced motion)
     SmartImage.tsx    # next/image wrapper (optimizes photos, passes SVG through)
   data/               # site, projects, capabilities, process, nav
-  lib/                # types, schema (JSON-LD), shared quote-form validation
+  lib/                # types, schema (JSON-LD), shared quote-form validation,
+                      # project media helpers (projectMedia.ts)
 scripts/
   generate-placeholders.mjs  # builds the demo images
 ```
@@ -258,3 +287,9 @@ place — update the domain and business facts in `site.ts` / `schema.ts`.
   chain (`glob`/`minimatch`) and are not shipped to production.
 - `npm run gen:placeholders` will regenerate the demo images if you ever delete
   them; it does not touch real photos you've added under other folders.
+- Project photos are kept resized to a ~1800px max edge and recompressed
+  (JPEG quality ~68–80) before committing — full-resolution phone photos are
+  often 3–5x larger than what the layout ever displays, and shrinking them
+  keeps the repo lean and pages fast. No fixed tool is required; any image
+  editor or a quick script (Pillow, `sharp`, ImageMagick) works, the target
+  is just "visually unchanged at display size, meaningfully smaller in bytes."

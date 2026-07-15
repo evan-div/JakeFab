@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { SmartImage } from "./SmartImage";
 import type { Project } from "@/lib/types";
+import { getProjectMedia } from "@/lib/projectMedia";
 
 type Props = {
   project: Project;
@@ -13,13 +14,14 @@ type Props = {
  * Accessible project detail / lightbox dialog.
  * - role="dialog" aria-modal, labelled by the project title
  * - Escape closes, focus is trapped, focus is restored to the trigger
- * - Left/Right arrows move between images
+ * - Left/Right arrows move between photos/videos
  */
 export function ProjectModal({ project, onClose }: Props) {
   const [index, setIndex] = useState(0);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const total = project.images.length;
+  const media = getProjectMedia(project);
+  const total = media.length;
 
   const next = useCallback(
     () => setIndex((i) => (i + 1) % total),
@@ -73,7 +75,7 @@ export function ProjectModal({ project, onClose }: Props) {
     return () => window.removeEventListener("keydown", onKey);
   }, [next, prev, onClose]);
 
-  const current = project.images[index];
+  const current = media[index];
 
   return (
     <div
@@ -92,14 +94,27 @@ export function ProjectModal({ project, onClose }: Props) {
         {/* Image side */}
         <div className="relative w-full bg-steel-950 md:w-3/5">
           <div className="relative aspect-[3/2] w-full md:aspect-auto md:h-full md:min-h-[420px]">
-            <SmartImage
-              key={current.src}
-              src={current.src}
-              alt={current.alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 60vw"
-              className="object-cover animate-fade-in"
-            />
+            {current.kind === "video" ? (
+              <video
+                key={current.src}
+                src={current.src}
+                poster={current.poster}
+                aria-label={current.alt}
+                controls
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 h-full w-full bg-steel-950 object-contain animate-fade-in"
+              />
+            ) : (
+              <SmartImage
+                key={current.src}
+                src={current.src}
+                alt={current.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 60vw"
+                className="object-cover animate-fade-in"
+              />
+            )}
           </div>
 
           {total > 1 && (
@@ -107,7 +122,7 @@ export function ProjectModal({ project, onClose }: Props) {
               <button
                 type="button"
                 onClick={prev}
-                aria-label="Previous image"
+                aria-label="Previous"
                 className="absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center bg-steel-950/60 text-concrete-50 transition-colors hover:bg-steel-950"
               >
                 <Chevron dir="left" />
@@ -115,18 +130,18 @@ export function ProjectModal({ project, onClose }: Props) {
               <button
                 type="button"
                 onClick={next}
-                aria-label="Next image"
+                aria-label="Next"
                 className="absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center bg-steel-950/60 text-concrete-50 transition-colors hover:bg-steel-950"
               >
                 <Chevron dir="right" />
               </button>
               <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
-                {project.images.map((img, i) => (
+                {media.map((item, i) => (
                   <button
-                    key={img.src}
+                    key={item.src}
                     type="button"
                     onClick={() => setIndex(i)}
-                    aria-label={`Go to image ${i + 1} of ${total}`}
+                    aria-label={`Go to ${item.kind} ${i + 1} of ${total}`}
                     aria-current={i === index}
                     className={`h-1.5 rounded-full transition-all ${
                       i === index
