@@ -26,6 +26,7 @@ export const projects: Project[] = [
     slug: "patinated-steel-range-hood",
     title: "Stained Brass Range Hood",
     category: "Kitchen & Interior Finishes",
+    location: "Sammamish, WA",
     summary:
       "A large range hood in hand-stained brass with a mottled, one-of-a-kind patina, set against a marble slab backsplash.",
     description:
@@ -49,6 +50,7 @@ export const projects: Project[] = [
     slug: "wine-cellar-door",
     title: "Arched Wine Cellar Door",
     category: "Architectural Metalwork",
+    location: "Snoqualmie, WA",
     summary:
       "A hand-forged steel-and-glass double door with Damascus steel accents, set into an arched opening leading to a brick barrel-vault wine cellar.",
     description:
@@ -84,6 +86,7 @@ export const projects: Project[] = [
     slug: "modern-steel-planter-boxes",
     title: "Modern Steel Planter Boxes",
     category: "Planter Boxes",
+    location: "Seattle, WA",
     summary:
       "A matched set of long, raw-steel planter boxes with integrated trellis posts for a modern backyard.",
     description:
@@ -149,6 +152,7 @@ export const projects: Project[] = [
     slug: "hillside-view-home-railings",
     title: "View Home Deck & Stair Railings",
     category: "Railings & Handrails",
+    location: "Milton, WA",
     summary:
       "Matching black cable-and-glass railings across a two-story home's rear balconies and exterior stair.",
     description:
@@ -178,6 +182,7 @@ export const projects: Project[] = [
     slug: "cedar-steel-trash-enclosure",
     title: "Steel-Framed Enclosure with Wood Infill",
     category: "Outdoor Features",
+    location: "Milton, WA",
     summary:
       "A blackened steel-frame enclosure with horizontal wood slats and a matching gate, built for a paver patio.",
     description:
@@ -213,6 +218,7 @@ export const projects: Project[] = [
     slug: "wood-steel-address-sign",
     title: "Wood & Steel Address Sign",
     category: "Fully Custom Fabrication",
+    location: "Milton, WA",
     summary:
       "A framed steel-and-wood address sign with applied metal house numbers, set on a freestanding post.",
     description:
@@ -242,6 +248,7 @@ export const projects: Project[] = [
     slug: "custom-address-mailbox",
     title: "Custom Steel Mailbox",
     category: "Fully Custom Fabrication",
+    location: "Coupeville, WA",
     summary:
       "A fully custom steel mailbox with an angular hooded top and house numbers laser-cut through the post.",
     description:
@@ -271,6 +278,7 @@ export const projects: Project[] = [
     slug: "sliding-driveway-gate",
     title: "Slatted Steel Driveway Gate",
     category: "Outdoor Features",
+    location: "Sammamish, WA",
     summary:
       "A wide sliding driveway gate with horizontal raw-steel slats, built for a wooded rural property.",
     description:
@@ -294,6 +302,7 @@ export const projects: Project[] = [
     slug: "salmon-storm-drain-grate",
     title: "Salmon Storm Drain Grate",
     category: "Fully Custom Fabrication",
+    location: "Milton, WA",
     summary:
       "A custom-cut steel storm drain grate featuring a salmon silhouette, set into a paver walkway.",
     description:
@@ -323,6 +332,7 @@ export const projects: Project[] = [
     slug: "kitchen-island-table-leg",
     title: "Hand-Forged Table Leg",
     category: "Furniture & Fixtures",
+    location: "Sammamish, WA",
     summary:
       "A blackened, hand-textured tapered table leg extending a kitchen island into a peninsula table.",
     description:
@@ -346,6 +356,7 @@ export const projects: Project[] = [
     slug: "modern-stairwell-railing",
     title: "Modern Stairwell Railing",
     category: "Railings & Handrails",
+    location: "Maple Valley, WA",
     summary:
       "A blackened steel handrail with slim horizontal bars, wrapping an open stairwell and loft landing.",
     description:
@@ -405,6 +416,7 @@ export const projects: Project[] = [
     slug: "cascade-view-deck-railing",
     title: "Mountain-View Deck & Stair Rail",
     category: "Railings & Handrails",
+    location: "Snoqualmie, WA",
     summary:
       "A minimalist bent-steel handrail and matching deck guard, set against a dramatic mountain backdrop.",
     description:
@@ -434,6 +446,7 @@ export const projects: Project[] = [
     slug: "glass-elevator-stair-railing",
     title: "Stairwell Railing with Glass Elevator",
     category: "Railings & Handrails",
+    location: "Gig Harbor, WA",
     summary:
       "A vertical-baluster black steel railing wrapping a stairwell landing beside a residential glass elevator.",
     description:
