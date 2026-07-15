@@ -2,6 +2,7 @@
 
 import { useId, useRef, useState } from "react";
 import { site } from "@/data/site";
+import { MAX_ATTACHMENTS_BYTES, validateQuote } from "@/lib/validateQuote";
 import { Reveal } from "./Reveal";
 
 const PROJECT_TYPES = [
@@ -38,37 +39,28 @@ type Errors = Partial<Record<string, string>>;
 export function QuoteForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Errors>({});
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [attachmentsSkipped, setAttachmentsSkipped] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const uid = useId();
   const [fileName, setFileName] = useState<string>("");
 
   const fieldId = (name: string) => `${uid}-${name}`;
 
-  const validate = (data: FormData): Errors => {
-    const next: Errors = {};
-    const name = String(data.get("name") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-    const phone = String(data.get("phone") ?? "").trim();
-    const description = String(data.get("description") ?? "").trim();
-    const type = String(data.get("projectType") ?? "");
-
-    if (name.length < 2) next.name = "Please enter your name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      next.email = "Enter a valid email address.";
-    // Phone is optional, but if provided should look plausible.
-    if (phone && phone.replace(/[^\d]/g, "").length < 7)
-      next.phone = "Enter a valid phone number, or leave this blank.";
-    if (!type) next.projectType = "Choose the closest project type.";
-    if (description.length < 15)
-      next.description =
-        "Tell us a little more — even a couple of sentences helps.";
-    return next;
-  };
+  const validate = (data: FormData): Errors =>
+    validateQuote({
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      phone: String(data.get("phone") ?? ""),
+      description: String(data.get("description") ?? ""),
+      projectType: String(data.get("projectType") ?? ""),
+    });
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    setErrorMessage(null);
 
     // Honeypot: real users never fill this hidden field.
     if (String(data.get("company") ?? "").length > 0) {
@@ -78,6 +70,15 @@ export function QuoteForm() {
     }
 
     const nextErrors = validate(data);
+
+    // Catch oversized photo attachments before firing a network request.
+    const files = data.getAll("files").filter((f): f is File => f instanceof File);
+    const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
+    if (totalBytes > MAX_ATTACHMENTS_BYTES) {
+      nextErrors.files =
+        "Photos are too large (4MB total) — try fewer or smaller images, or leave them off and email them separately.";
+    }
+
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       setStatus("error");
@@ -89,25 +90,21 @@ export function QuoteForm() {
 
     setStatus("submitting");
 
-    // ───────────────────────────────────────────────────────────────────
-    // ▸ CONNECT FORM SUBMISSION HERE.
-    //   This form is NOT wired to a backend yet. Replace the simulated
-    //   delay below with a real submission, e.g.:
-    //
-    //     const res = await fetch("/api/quote", { method: "POST", body: data });
-    //     if (!res.ok) throw new Error("Request failed");
-    //
-    //   Options: a Next.js Route Handler (/app/api/quote/route.ts) that emails
-    //   the shop, or a form service (Formspree, Basin, Web3Forms, Resend, etc.).
-    //   Handle the uploaded file(s) server-side; do not trust client input.
-    // ───────────────────────────────────────────────────────────────────
     try {
-      await new Promise((r) => setTimeout(r, 900)); // simulated only
+      const res = await fetch("/api/quote", { method: "POST", body: data });
+      const json = await res.json().catch(() => null);
+      if (!res.ok || !json?.ok) {
+        throw new Error(json?.error ?? "Request failed");
+      }
+      setAttachmentsSkipped(!!json.attachmentsSkipped);
       setStatus("success");
       form.reset();
       setFileName("");
       setErrors({});
     } catch {
+      setErrorMessage(
+        `Something went wrong sending your request. Please try again, or email us directly at ${site.email}.`
+      );
       setStatus("error");
     }
   };
@@ -130,17 +127,21 @@ export function QuoteForm() {
             </div>
             <h2 className="font-display text-2xl font-bold">Thanks — that's in.</h2>
             <p className="mt-3 text-sm leading-relaxed text-concrete-100/75">
-              Your request has been received in the browser. We'll follow up to
-              talk through your project.{" "}
-              <span className="text-concrete-100/50">
-                (Note: no backend is connected yet — see the code comment in{" "}
-                <code className="font-mono">QuoteForm.tsx</code> to wire up real
-                delivery.)
-              </span>
+              Your request has been sent. We'll follow up to talk through your
+              project.
             </p>
+            {attachmentsSkipped && (
+              <p className="mt-3 text-sm leading-relaxed text-copper-400">
+                Your photos were too large to attach — feel free to email
+                them to {site.email} directly.
+              </p>
+            )}
             <button
               type="button"
-              onClick={() => setStatus("idle")}
+              onClick={() => {
+                setStatus("idle");
+                setAttachmentsSkipped(false);
+              }}
               className="btn-ghost-light mt-8"
             >
               Send another request
@@ -192,7 +193,7 @@ export function QuoteForm() {
                   role="alert"
                   className="border-l-2 border-red-400 bg-red-400/10 px-3 py-2 text-sm text-red-200"
                 >
-                  Please fix the highlighted fields and try again.
+                  {errorMessage ?? "Please fix the highlighted fields and try again."}
                 </p>
               )}
 
@@ -295,7 +296,9 @@ export function QuoteForm() {
                 </label>
                 <label
                   htmlFor={fieldId("files")}
-                  className="flex cursor-pointer items-center justify-between gap-3 border border-dashed border-concrete-50/25 bg-steel-950/40 px-4 py-3 text-sm text-concrete-100/70 transition-colors hover:border-copper-400"
+                  className={`flex cursor-pointer items-center justify-between gap-3 border border-dashed bg-steel-950/40 px-4 py-3 text-sm text-concrete-100/70 transition-colors hover:border-copper-400 ${
+                    errors.files ? "border-red-400" : "border-concrete-50/25"
+                  }`}
                 >
                   <span className="truncate">
                     {fileName || "Attach a sketch, photo, or reference image"}
@@ -310,6 +313,10 @@ export function QuoteForm() {
                     multiple
                     accept="image/*,.pdf"
                     className="sr-only"
+                    aria-invalid={!!errors.files}
+                    aria-describedby={
+                      errors.files ? `${fieldId("files")}-error` : undefined
+                    }
                     onChange={(e) => {
                       const files = e.currentTarget.files;
                       setFileName(
@@ -322,6 +329,14 @@ export function QuoteForm() {
                     }}
                   />
                 </label>
+                {errors.files && (
+                  <p
+                    id={`${fieldId("files")}-error`}
+                    className="mt-1 text-xs text-red-300"
+                  >
+                    {errors.files}
+                  </p>
+                )}
               </div>
 
               {/* Honeypot — visually hidden, ignored by users, catches bots. */}

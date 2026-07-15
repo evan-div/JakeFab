@@ -46,7 +46,7 @@ npm run lint    # eslint
 | Nav labels/order | `src/data/nav.ts` |
 | Page title / meta description / Open Graph | `src/app/layout.tsx` |
 | LocalBusiness structured data | `src/lib/schema.ts` |
-| Where the quote form sends submissions | `src/components/QuoteForm.tsx` (see below) |
+| Where the quote form sends submissions | `.env.local` (API key) + `src/app/api/quote/route.ts` (see below) |
 | Colors, fonts, spacing tokens | `tailwind.config.ts` |
 
 ---
@@ -133,30 +133,65 @@ credentials.**
 
 ## 3. Connecting the quote form
 
-The form (`src/components/QuoteForm.tsx`) is a complete, validated UI with
-success/error states, accessible labels, and a honeypot spam trap — but it is
-**not wired to a backend.** Find the clearly marked block:
+The form (`src/components/QuoteForm.tsx`) **is wired up** — submissions POST
+to `src/app/api/quote/route.ts`, which emails the shop via
+[Resend](https://resend.com). There's no database or admin panel; Gmail is
+the system of record.
 
-```ts
-// ▸ CONNECT FORM SUBMISSION HERE.
-```
+**Setup (one-time):**
 
-Replace the simulated delay with a real submission. Two common options:
+1. Sign up for a free Resend account at [resend.com](https://resend.com)
+   using the same address that should receive quotes (e.g.
+   `wall.d.jake@gmail.com`) — no credit card, no domain verification needed
+   to get started.
+2. Generate an API key in the Resend dashboard.
+3. Copy `.env.local.example` to `.env.local` and paste the key in as
+   `RESEND_API_KEY`. Restart `npm run dev` if it's already running.
+4. For the deployed site, add `RESEND_API_KEY` in Vercel → Project →
+   Settings → Environment Variables (Production and Preview), then redeploy.
 
-1. **Next.js Route Handler** — create `src/app/api/quote/route.ts`, read the
-   `FormData` (including uploaded files), and email the shop (e.g. via
-   [Resend](https://resend.com) or Nodemailer). Then `fetch("/api/quote", …)`.
-2. **A form service** — [Formspree](https://formspree.io),
-   [Basin](https://usebasin.com), or [Web3Forms](https://web3forms.com). Point
-   the fetch at their endpoint and add your form key/ID via an environment
-   variable (e.g. `NEXT_PUBLIC_FORM_ENDPOINT` in `.env.local`).
+**How it works:**
 
-Whichever you choose: validate and handle the uploaded file(s) **server-side**,
-and never trust client input. Consider adding a real CAPTCHA (e.g. Cloudflare
-Turnstile) in addition to the honeypot if you get spam.
+- Emails send from Resend's shared `onboarding@resend.dev` address — this
+  works with zero DNS setup as long as the recipient (`QUOTE_TO_EMAIL` in
+  `.env.local`, or `site.email` if that's unset) matches the email the
+  Resend account was created with. Replying to a notification goes straight
+  back to the customer (`reply_to` is set to their submitted email).
+- Attached photos are included as email attachments, capped at **4MB
+  total** (enforced both in the browser, before anything is sent, and again
+  on the server). If someone attaches more than that, the email still sends
+  with the text fields — the browser tells the person their photos didn't
+  come through and to email them directly.
+- Both client (`QuoteForm.tsx`) and server (`route.ts`) validate required
+  fields from a single shared source, `src/lib/validateQuote.ts` — update
+  validation rules there, not in either file individually.
+- A hidden honeypot field (checked on both ends) filters unsophisticated
+  spam bots. There's no rate limiting or CAPTCHA yet — not needed at this
+  site's volume, but `route.ts` has a comment noting the upgrade path
+  (Cloudflare Turnstile, or IP-based limiting) if that ever changes.
 
-Nothing about the current UI implies a working backend beyond a browser-side
-confirmation, and the success message says so.
+**Optional next step:** once a real domain is connected (see below) and
+verified in Resend's dashboard, you can send from a branded address like
+`quotes@jwallfabrication.com` instead of `onboarding@resend.dev` — change
+the `from` field in `route.ts`.
+
+---
+
+## 4. Connecting a custom domain
+
+The site deploys to Vercel from `main`. To put it on a real domain instead
+of the default `*.vercel.app` URL:
+
+1. In the Vercel project → Settings → Domains, enter the domain you own.
+   Vercel shows either a couple of DNS records to add at your registrar, or
+   an option to point the domain's nameservers at Vercel directly.
+2. Add whichever Vercel asks for at your registrar (GoDaddy, Namecheap,
+   etc.). Propagation is usually minutes, sometimes a few hours; Vercel's
+   dashboard shows a green "Valid Configuration" once it's live and
+   auto-issues SSL.
+3. Update `src/data/site.ts` — replace the `url` placeholder with the real
+   domain. This feeds the canonical URL, Open Graph tags, `sitemap.ts`, and
+   the `LocalBusiness` schema throughout the site. Redeploy.
 
 ---
 
@@ -171,6 +206,7 @@ src/
     icon.svg          # favicon
     robots.ts         # /robots.txt
     sitemap.ts        # /sitemap.xml
+    api/quote/route.ts # POST handler — emails quote submissions via Resend
   components/
     Header.tsx        # transparent→solid on scroll, accessible mobile menu
     Hero.tsx          # priority hero image + CTAs
@@ -186,7 +222,7 @@ src/
     Reveal.tsx        # scroll-reveal wrapper (respects reduced motion)
     SmartImage.tsx    # next/image wrapper (optimizes photos, passes SVG through)
   data/               # site, projects, capabilities, process, nav
-  lib/                # types, schema (JSON-LD)
+  lib/                # types, schema (JSON-LD), shared quote-form validation
 scripts/
   generate-placeholders.mjs  # builds the demo images
 ```
