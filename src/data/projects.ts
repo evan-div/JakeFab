@@ -47,6 +47,48 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "boise-bronze-kitchen-accents",
+    title: "Bronze Kitchen Accents",
+    category: "Kitchen & Interior Finishes",
+    location: "Boise, ID",
+    summary:
+      "A set of custom bronze accents — a range hood band, cabinet door muntins, and floating shelf edge trim — for a kitchen remodel.",
+    description:
+      "This kitchen wanted a warm metal thread running through several features rather than one big statement piece. We fabricated a bronze band to wrap the base of the range hood, muntin bars for a glass-front display cabinet, and edge trim for a run of floating shelves — all in the same material, so the accents read as one considered decision throughout the room.",
+    challenge:
+      "Design several distinct bronze pieces — a hood band, cabinet muntins, and shelf edge trim — that read as a matched set without being identical.",
+    result:
+      "A cohesive run of bronze accents left in a raw finish so they'll patina naturally over time, tying the range hood, display cabinet, and shelving together.",
+    materials: ["Bronze", "Raw, unlacquered finish"],
+    coverImage: "/projects/boise-bronze-kitchen-accents/cover.jpg",
+    images: [
+      {
+        src: "/projects/boise-bronze-kitchen-accents/cover.jpg",
+        alt: "Raw bronze band wrapping the base of a range hood above a dark red vertical-stripe tile backsplash.",
+        width: 960,
+        height: 1280,
+      },
+      {
+        src: "/projects/boise-bronze-kitchen-accents/01.jpg",
+        alt: "Glass-front display cabinet with bronze muntin bars dividing the panes, filled with dishware.",
+        width: 960,
+        height: 1280,
+      },
+      {
+        src: "/projects/boise-bronze-kitchen-accents/02.jpg",
+        alt: "Floating wood shelves with bronze edge trim along the front edge, styled with books and decor.",
+        width: 960,
+        height: 1280,
+      },
+      {
+        src: "/projects/boise-bronze-kitchen-accents/03.jpg",
+        alt: "Close-up of the bronze edge trim on a floating shelf corner, showing the fastening screws.",
+        width: 1350,
+        height: 1800,
+      },
+    ],
+  },
+  {
     slug: "wine-cellar-door",
     title: "Arched Wine Cellar Door",
     category: "Architectural Metalwork",
