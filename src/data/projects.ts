@@ -213,6 +213,13 @@ export const projects: Project[] = [
         height: 1800,
       },
     ],
+    videos: [
+      {
+        src: "/projects/cedar-steel-trash-enclosure/enclosure-install.mp4",
+        alt: "Walkthrough of the finished steel-and-wood enclosure on the paver patio, including a close-up of the frame joinery and gate latch.",
+        poster: "/projects/cedar-steel-trash-enclosure/cover.jpg",
+      },
+    ],
   },
   {
     slug: "wood-steel-address-sign",
@@ -273,6 +280,13 @@ export const projects: Project[] = [
         height: 1800,
       },
     ],
+    videos: [
+      {
+        src: "/projects/custom-address-mailbox/mailbox-install.mp4",
+        alt: "Another example of the same angular steel mailbox design, finished in a gloss purple with a red flag and house numbers cut through the post.",
+        poster: "/projects/custom-address-mailbox/cover.jpg",
+      },
+    ],
   },
   {
     slug: "sliding-driveway-gate",
@@ -295,6 +309,13 @@ export const projects: Project[] = [
         alt: "Wide sliding steel driveway gate with horizontal slats, set between concrete posts on a wooded rural property.",
         width: 1800,
         height: 1350,
+      },
+    ],
+    videos: [
+      {
+        src: "/projects/sliding-driveway-gate/gate-install.mp4",
+        alt: "Install-day footage of the slatted steel driveway gate being set into place and hung on its track between the concrete-set posts.",
+        poster: "/projects/sliding-driveway-gate/cover.jpg",
       },
     ],
   },
