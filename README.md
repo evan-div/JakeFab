@@ -6,10 +6,11 @@ Tailwind CSS**. The gallery, capabilities, process, and quote form are all
 driven by small, editable data files so the site can be updated without
 touching markup.
 
-> **Status:** Fully built and reviewed with placeholder content. Everything
-> marked `[PLACEHOLDER …]` or labeled "Sample project" is a stand-in — replace
-> it with real information and photography before launch. Nothing here is
-> presented as a verified fact.
+> **Status:** Fully built with 13 real projects and real project photography
+> (see `public/projects/`). Business contact details, the About bio, and the
+> Trust section are still marked `[PLACEHOLDER …]` — replace those with real
+> information before launch. Nothing here is presented as a verified fact
+> beyond what's visible in the photos themselves.
 
 ---
 
@@ -17,9 +18,12 @@ touching markup.
 
 ```bash
 npm install
-npm run gen:placeholders   # (re)creates the demo images in /public/projects
 npm run dev                # http://localhost:3000
 ```
+
+`npm run gen:placeholders` only regenerates the Open Graph share-image
+placeholder in `public/brand/` — the project gallery uses real photos and
+doesn't need it.
 
 Other scripts:
 
@@ -53,7 +57,7 @@ Each project lives in its own folder under `public/projects/`:
 
 ```
 public/projects/
-  harbor-stair-railing/
+  wine-cellar-door/         ← a real project already in the gallery
     cover.jpg      ← the card / hero image for this project
     01.jpg
     02.jpg
@@ -81,9 +85,12 @@ Then add (or edit) an entry in **`src/data/projects.ts`**:
     { src: "/projects/your-new-project/cover.jpg", alt: "Describe the photo.", width: 1600, height: 1100 },
     { src: "/projects/your-new-project/01.jpg",    alt: "Describe the photo.", width: 1600, height: 1100 },
   ],
-  // remove isPlaceholder (or set false) once this is a real project
 }
 ```
+
+Only set `isPlaceholder: true` for demonstration content that isn't a real
+job — it adds a "Sample project" note in the modal. Leave it off (as all 13
+current projects do) for real work.
 
 The gallery renders straight from this array — no component changes needed.
 Cards alternate left/right automatically.

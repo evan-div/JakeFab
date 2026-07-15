@@ -91,7 +91,7 @@ export function ProjectModal({ project, onClose }: Props) {
       >
         {/* Image side */}
         <div className="relative w-full bg-steel-950 md:w-3/5">
-          <div className="relative aspect-[3/2] w-full">
+          <div className="relative aspect-[3/2] w-full md:aspect-auto md:h-full md:min-h-[420px]">
             <SmartImage
               key={current.src}
               src={current.src}

@@ -1,9 +1,10 @@
 /**
- * Generates material-toned SVG placeholder images for the featured projects.
+ * Regenerates the material-toned SVG Open Graph / social-share placeholder.
  *
- * These stand in for real photography so the gallery reads as a finished
- * design. Each image is clearly labeled "PLACEHOLDER" — replace the whole
- * /public/projects/<slug>/ folder with real photos when you have them.
+ * The project gallery now uses real client photos (see src/data/projects.ts
+ * and /public/projects/), so this script no longer generates project images —
+ * only the OG placeholder in /public/brand, which can be swapped for a real
+ * hero photo whenever one is available.
  *
  * Run:  npm run gen:placeholders
  */
@@ -12,45 +13,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, "..", "public", "projects");
 
 const W = 1600;
 const H = 1100;
 
-// Material palettes — top and bottom gradient stops + accent line color.
-const MATERIALS = {
-  steel: { a: "#26241f", b: "#0f0e0d", accent: "#8a8078", label: "Blackened steel" },
-  corten: { a: "#7a4a30", b: "#3d2418", accent: "#c98a5f", label: "Weathering steel" },
-  aluminum: { a: "#c9c6c0", b: "#8f8b84", accent: "#5b574f", label: "Brushed aluminum" },
-  concrete: { a: "#cbc6bc", b: "#9a948a", accent: "#6b655c", label: "Concrete" },
-  wood: { a: "#8a5a34", b: "#4d3016", accent: "#caa06a", label: "Warm wood" },
-};
-
-// slug -> array of { file, material, caption }
-const PLAN = {
-  "harbor-stair-railing": [
-    { file: "cover", material: "steel", caption: "Stair railing" },
-    { file: "01", material: "steel", caption: "Weld detail" },
-    { file: "02", material: "wood", caption: "Oak cap rail" },
-  ],
-  "blackened-kitchen-hood": [
-    { file: "cover", material: "steel", caption: "Range hood" },
-    { file: "01", material: "aluminum", caption: "Floating shelves" },
-  ],
-  "corten-planters": [
-    { file: "cover", material: "corten", caption: "Corten planters" },
-    { file: "01", material: "corten", caption: "Corner patina" },
-    { file: "02", material: "concrete", caption: "In context" },
-  ],
-  "entry-canopy": [
-    { file: "cover", material: "aluminum", caption: "Entry canopy" },
-    { file: "01", material: "steel", caption: "Framing detail" },
-  ],
-  "live-edge-console": [
-    { file: "cover", material: "wood", caption: "Console table" },
-    { file: "01", material: "steel", caption: "Leg detail" },
-  ],
-};
+const STEEL = { a: "#26241f", b: "#0f0e0d", accent: "#8a8078", label: "Blackened steel" };
 
 function svg({ a, b, accent, label }, caption) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img">
@@ -82,24 +49,11 @@ function svg({ a, b, accent, label }, caption) {
 `;
 }
 
-let count = 0;
-for (const [slug, items] of Object.entries(PLAN)) {
-  const dir = join(ROOT, slug);
-  await mkdir(dir, { recursive: true });
-  for (const { file, material, caption } of items) {
-    const out = join(dir, `${file}.svg`);
-    await writeFile(out, svg(MATERIALS[material], caption), "utf8");
-    count++;
-  }
-}
-
-// A social share / Open Graph placeholder.
 await mkdir(join(__dirname, "..", "public", "brand"), { recursive: true });
 await writeFile(
   join(__dirname, "..", "public", "brand", "og-image.svg"),
-  svg(MATERIALS.steel, "Jake Wall Metalworks"),
+  svg(STEEL, "Jake Wall Metalworks"),
   "utf8"
 );
-count++;
 
-console.log(`Generated ${count} placeholder image(s).`);
+console.log("Generated 1 placeholder image (public/brand/og-image.svg).");

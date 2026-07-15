@@ -13,7 +13,7 @@ export function localBusinessJsonLd() {
     description:
       "Custom metalwork and fabrication — railings, architectural metal, planters, kitchen features, and one-off pieces for homes and businesses.",
     url: site.url,
-    image: `${site.url}/brand/og-image.svg`,
+    image: `${site.url}/projects/hillside-view-home-railings/cover.jpg`,
     areaServed: site.serviceAreas.map((name) => ({
       "@type": "Place",
       name,
@@ -32,7 +32,7 @@ export function localBusinessJsonLd() {
       "Custom metal fabrication",
       "Railings and handrails",
       "Architectural metalwork",
-      "Corten planters",
+      "Steel planter boxes",
       "Kitchen metal finishes",
     ],
   };

@@ -7,11 +7,10 @@ export function Hero() {
       id="top"
       className="grain relative flex min-h-[100svh] items-end overflow-hidden bg-steel-950"
     >
-      {/* Hero image — priority-loaded, fills the frame. Replace the source with
-          a strong real project photo (landscape, high resolution). */}
+      {/* Hero image — priority-loaded, fills the frame. */}
       <SmartImage
-        src="/projects/harbor-stair-railing/cover.svg"
-        alt="PLACEHOLDER — feature photograph of a finished custom metalwork project."
+        src="/projects/hillside-view-home-railings/cover.jpg"
+        alt="Two-story modern home with matching black-framed glass balcony railings and a long exterior stair with cable railing, custom-built by Jake Wall Metalworks."
         fill
         priority
         sizes="100vw"

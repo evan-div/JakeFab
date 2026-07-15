@@ -54,9 +54,9 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/brand/og-image.svg",
-        width: 1600,
-        height: 1100,
+        url: "/projects/hillside-view-home-railings/cover.jpg",
+        width: 2048,
+        height: 1536,
         alt: `${site.name} — custom metalwork in ${site.city}, ${site.state}`,
       },
     ],
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/brand/og-image.svg"],
+    images: ["/projects/hillside-view-home-railings/cover.jpg"],
   },
   robots: {
     index: true,
