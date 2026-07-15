@@ -1,4 +1,4 @@
-# Jake Wall Metalworks — Landing Page
+# JWALL Fabrication — Landing Page
 
 A high-end, industrial-themed marketing site for a custom metalsmith in
 Coupeville, Washington. Built with **Next.js (App Router) · TypeScript ·

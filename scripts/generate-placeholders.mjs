@@ -52,7 +52,7 @@ function svg({ a, b, accent, label }, caption) {
 await mkdir(join(__dirname, "..", "public", "brand"), { recursive: true });
 await writeFile(
   join(__dirname, "..", "public", "brand", "og-image.svg"),
-  svg(STEEL, "Jake Wall Metalworks"),
+  svg(STEEL, "JWALL Fabrication"),
   "utf8"
 );
 

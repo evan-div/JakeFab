@@ -5,9 +5,9 @@
  *   These are drafts / stand-ins — nothing here is verified fact.
  */
 export const site = {
-  name: "Jake Wall Metalworks",
+  name: "JWALL Fabrication",
   // A short tagline for the logo lockup / meta.
-  shortName: "Jake Wall",
+  shortName: "JWALL",
   role: "Custom Metalsmith & Fabricator",
   city: "Coupeville",
   state: "Washington",
@@ -26,13 +26,13 @@ export const site = {
 
   // ▸ Social — leave "" to hide a link in the footer.
   social: {
-    instagram: "", // e.g. "https://instagram.com/jakewallmetalworks"
+    instagram: "", // e.g. "https://instagram.com/jwallfabrication"
     facebook: "",
     houzz: "",
   },
 
   // Canonical site URL (used for metadata / Open Graph / schema).
-  url: "https://www.jakewallmetalworks.com", // [PLACEHOLDER — final domain]
+  url: "https://www.jwallfabrication.com", // [PLACEHOLDER — final domain]
 
   // Areas served — used in copy and LocalBusiness schema.
   serviceAreas: [

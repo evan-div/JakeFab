@@ -10,7 +10,7 @@ export function Hero() {
       {/* Hero image — priority-loaded, fills the frame. */}
       <SmartImage
         src="/projects/hillside-view-home-railings/cover.jpg"
-        alt="Two-story modern home with matching black-framed glass balcony railings and a long exterior stair with cable railing, custom-built by Jake Wall Metalworks."
+        alt="Two-story modern home with matching black-framed glass balcony railings and a long exterior stair with cable railing, custom-built by JWALL Fabrication."
         fill
         priority
         sizes="100vw"

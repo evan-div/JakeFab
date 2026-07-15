@@ -56,7 +56,7 @@ export function Header() {
               solid ? "text-steel-400" : "text-concrete-100/70"
             }`}
           >
-            Metalworks · {site.city}, {site.addressRegion}
+            Fabrication · {site.city}, {site.addressRegion}
           </span>
         </a>
 
