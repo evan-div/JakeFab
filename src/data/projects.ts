@@ -86,11 +86,16 @@ export const projects: Project[] = [
     slug: "bronze-cabinet-accents-and-hood",
     title: "Bronze Cabinet Accents and Hood",
     category: "Kitchen & Interior Finishes",
+    location: "Sammamish, WA",
     summary:
-      "Bronze muntin bars on a glass-front display cabinet, part of a larger kitchen accent package including a range hood.",
+      "Bronze muntin bars on a glass-front cabinet and a matching trim band on a blackened steel range hood, for a kitchen remodel.",
     description:
-      "More photos of this project are on the way — currently showing the bronze muntin bars dividing the panes of a glass-front display cabinet.",
-    materials: ["Bronze"],
+      "This kitchen paired a blackened steel range hood with a bronze trim band at its base, then carried the same material into a glass-front display cabinet with bronze muntin bars dividing the panes — two distinct pieces in one material, so they read as part of the same design.",
+    challenge:
+      "Build a bronze trim band and a full grid of cabinet muntins that match in finish and read as a coordinated pair despite very different scales and mounting.",
+    result:
+      "A blackened steel range hood banded in bronze, paired with a bronze-mullioned display cabinet, both left raw to patina naturally.",
+    materials: ["Bronze", "Blackened steel (hood)", "Raw, unlacquered finish"],
     coverImage: "/projects/bronze-cabinet-accents-and-hood/cover.jpg",
     images: [
       {
@@ -98,6 +103,19 @@ export const projects: Project[] = [
         alt: "Glass-front display cabinet with bronze muntin bars dividing the panes, filled with dishware.",
         width: 960,
         height: 1280,
+      },
+      {
+        src: "/projects/bronze-cabinet-accents-and-hood/01.jpg",
+        alt: "Kitchen island and range wall showing the blackened steel range hood with bronze trim band, antique mirror tile backsplash, and matching cabinetry.",
+        width: 1452,
+        height: 956,
+      },
+    ],
+    videos: [
+      {
+        src: "/projects/bronze-cabinet-accents-and-hood/hood-detail.mp4",
+        alt: "Close-up detail of the blackened steel range hood's bronze trim band above the antique mirror tile backsplash.",
+        poster: "/projects/bronze-cabinet-accents-and-hood/01.jpg",
       },
     ],
   },
