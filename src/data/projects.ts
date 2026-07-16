@@ -188,6 +188,12 @@ export const projects: Project[] = [
         width: 1350,
         height: 1800,
       },
+      {
+        src: "/projects/modern-steel-planter-boxes/09.jpg",
+        alt: "Steel planter boxes fully planted with peas on an integrated trellis and staked tomatoes, set on a curved bluestone patio bordered by a hedge.",
+        width: 1600,
+        height: 1200,
+      },
     ],
   },
   {
