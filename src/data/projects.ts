@@ -52,13 +52,13 @@ export const projects: Project[] = [
     category: "Kitchen & Interior Finishes",
     location: "Boise, ID",
     summary:
-      "A set of custom bronze accents — a range hood band, cabinet door muntins, and floating shelf edge trim — for a kitchen remodel.",
+      "A set of custom bronze accents — a range hood band and floating shelf edge trim — for a kitchen remodel.",
     description:
-      "This kitchen wanted a warm metal thread running through several features rather than one big statement piece. We fabricated a bronze band to wrap the base of the range hood, muntin bars for a glass-front display cabinet, and edge trim for a run of floating shelves — all in the same material, so the accents read as one considered decision throughout the room.",
+      "This kitchen wanted a warm metal thread running through several features rather than one big statement piece. We fabricated a bronze band to wrap the base of the range hood and edge trim for a run of floating shelves — both in the same material, so the accents read as one considered decision throughout the room.",
     challenge:
-      "Design several distinct bronze pieces — a hood band, cabinet muntins, and shelf edge trim — that read as a matched set without being identical.",
+      "Design distinct bronze pieces — a hood band and shelf edge trim — that read as a matched set without being identical.",
     result:
-      "A cohesive run of bronze accents left in a raw finish so they'll patina naturally over time, tying the range hood, display cabinet, and shelving together.",
+      "A cohesive run of bronze accents left in a raw finish so they'll patina naturally over time, tying the range hood and shelving together.",
     materials: ["Bronze", "Raw, unlacquered finish"],
     coverImage: "/projects/boise-bronze-kitchen-accents/cover.jpg",
     images: [
@@ -70,21 +70,34 @@ export const projects: Project[] = [
       },
       {
         src: "/projects/boise-bronze-kitchen-accents/01.jpg",
-        alt: "Glass-front display cabinet with bronze muntin bars dividing the panes, filled with dishware.",
-        width: 960,
-        height: 1280,
-      },
-      {
-        src: "/projects/boise-bronze-kitchen-accents/02.jpg",
         alt: "Floating wood shelves with bronze edge trim along the front edge, styled with books and decor.",
         width: 960,
         height: 1280,
       },
       {
-        src: "/projects/boise-bronze-kitchen-accents/03.jpg",
+        src: "/projects/boise-bronze-kitchen-accents/02.jpg",
         alt: "Close-up of the bronze edge trim on a floating shelf corner, showing the fastening screws.",
         width: 1350,
         height: 1800,
+      },
+    ],
+  },
+  {
+    slug: "bronze-cabinet-accents-and-hood",
+    title: "Bronze Cabinet Accents and Hood",
+    category: "Kitchen & Interior Finishes",
+    summary:
+      "Bronze muntin bars on a glass-front display cabinet, part of a larger kitchen accent package including a range hood.",
+    description:
+      "More photos of this project are on the way — currently showing the bronze muntin bars dividing the panes of a glass-front display cabinet.",
+    materials: ["Bronze"],
+    coverImage: "/projects/bronze-cabinet-accents-and-hood/cover.jpg",
+    images: [
+      {
+        src: "/projects/bronze-cabinet-accents-and-hood/cover.jpg",
+        alt: "Glass-front display cabinet with bronze muntin bars dividing the panes, filled with dishware.",
+        width: 960,
+        height: 1280,
       },
     ],
   },
